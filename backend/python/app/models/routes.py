@@ -7,6 +7,7 @@ from .base import BaseModel
 
 if TYPE_CHECKING:
     from .route_stops import RouteStop
+    from .polyline import Polyline
 
 
 class RouteBase(SQLModel):
@@ -29,6 +30,11 @@ class Route(RouteBase, BaseModel, table=True):
 
     # Relationship to route stops
     route_stops: list["RouteStop"] = Relationship(
+        back_populates="route", sa_relationship_kwargs={"cascade": "all, delete-orphan"}
+    )
+
+    # Relationship to polylines
+    polylines: list["Polyline"] = Relationship(
         back_populates="route", sa_relationship_kwargs={"cascade": "all, delete-orphan"}
     )
 

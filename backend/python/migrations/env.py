@@ -19,6 +19,7 @@ from alembic import context
 from app.models.user import User
 from app.models.entity import Entity
 from app.models.simple_entity import SimpleEntity
+from app.models.polyline import Polyline
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -93,7 +94,7 @@ def run_migrations_online() -> None:
                 logger.info("No changes in schema detected.")
 
     from sqlalchemy import create_engine
-    
+
     connectable = create_engine(get_database_url())
 
     with connectable.connect() as connection:
